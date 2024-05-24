@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container">
+        <h1>Usuários</h1>
+        
+        {% for usuario in lista_usuarios %}
+            <div class="row">
+                <div class="col">
+                    <img src="{{foto_perfil+usuario.foto_perfil}}" class="rounded" width="75"> 
+                    <span class="m-2"> {{usuario.username}} </span>
+                    {% for curso in usuario.cursos.split(';') %}
+                    <button type="button" class="btn btn-success btn-sm mt-2" disabled>{{curso}}</button>
+                    {% endfor %}
+                </div>
+
+                <div class="col col-2 align-self-center">
+                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                        <div class="d-flex flex-column"> 
+                            <span class="articles">Cursos</span> 
+                            {% if  usuario.cursos.count(';') == 0 %}
+                            <span class="number1">0</span>
+                            {% else %}
+                            <span class="number1">{{ usuario.cursos.count(';') + 1 }}</span> 
+                            {% endif %}
+                        </div>
+                        <div class="d-flex flex-column"> 
+                            <span class="rating">Posts</span> 
+                            <span class="number3">{{ usuario.contar_posts() }}</span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

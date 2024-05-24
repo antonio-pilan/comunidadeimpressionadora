@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container mt-3">
+        <h1 style="color: orange">Comunidade Impressionadora</h1>
+        <h2>Feed - Projeto de Antonio Pilan</h2>
+        <hr>
+
+        {% for post in posts  %}
+            <div class="row border mt-4 p-2 meupost">
+
+                <div class="col col-2">
+                    <div class="image pe-2"> 
+                        <img src="{{foto_perfil+post.autor.foto_perfil}}" class="rounded" width="75"> 
+                    </div>
+                    <strong>{{post.autor.username}}</strong>
+                    <br>
+                    {% for curso in post.autor.cursos.split(';') %}
+                        <button type="button" class="btn btn-success mt-2 btn-sm" disabled>{{curso}}</button>
+                    {% endfor %}
+                </div>
+
+                <div class="col col-7">
+                    <a style="text-decoration: none" href="{{url_for("exibir_post", post_id=post.id)}}"><h4><strong>{{post.titulo}}</strong></h4></a>
+                    <br>
+                    <p>{{post.corpo}}</p>
+                </div>
+            </div>
+        {% endfor %}
+
+        
+    </div>
+    
+{% endblock %}
