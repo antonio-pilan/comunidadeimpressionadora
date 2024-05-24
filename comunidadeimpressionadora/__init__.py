@@ -21,7 +21,7 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'alert-info'
 
 from comunidadeimpressionadora import models
-engine = sqlalchemy.create_engine(app.config('SQLALCHEMY_DATABASE_URI'))
+engine = sqlalchemy.create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 inspector = sqlalchemy.inspect(engine)
 
 if not inspector.has_table("usuario"):
